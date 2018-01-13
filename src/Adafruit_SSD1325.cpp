@@ -27,9 +27,8 @@ All text above, and the splash screen below must be included in any redistributi
 
 #include <stdlib.h>
 #include <SPI.h>
-#include "Adafruit_GFX.h"
+#include <Adafruit_GFX.h>
 #include "Adafruit_SSD1325.h"
-#include "glcdfont.c"
 
 #ifdef SPI_HAS_TRANSACTION
 SPISettings oledspi = SPISettings(4000000, MSBFIRST, SPI_MODE0);
