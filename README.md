@@ -1,5 +1,8 @@
 This is a library for our Monochrome/Grayscale OLEDs based on SSD1325 drivers
 
+(This fork of https://github.com/adafruit/Adafruit_SSD1325_Library is made to
+work with http://particle.io boards and toolchain.)
+
   Pick one up today in the adafruit shop!
   ------> 
 
