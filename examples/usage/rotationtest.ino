@@ -21,13 +21,13 @@ All text above, and the splash screen below must be included in any redistributi
 #include <Adafruit_SSD1325.h>
 
 // If using software SPI, define CLK and MOSI
-#define OLED_CLK 13
-#define OLED_MOSI 11
+#define OLED_CLK 1
+#define OLED_MOSI 2
 
 // These are neede for both hardware & softare SPI
-#define OLED_CS 10
-#define OLED_RESET 9
-#define OLED_DC 8
+#define OLED_CS 3
+#define OLED_RESET 4
+#define OLED_DC 0
 
 // this is software SPI, slower but any pins
 Adafruit_SSD1325 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
