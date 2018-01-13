@@ -4,14 +4,14 @@ This is a library for our Monochrome OLEDs based on SSD1325 drivers
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/category/63_98
 
-These displays use SPI to communicate, 4 or 5 pins are required to  
+These displays use SPI to communicate, 4 or 5 pins are required to
 interface
 
-Adafruit invests time and resources providing this open source code, 
-please support Adafruit and open-source hardware by purchasing 
+Adafruit invests time and resources providing this open source code,
+please support Adafruit and open-source hardware by purchasing
 products from Adafruit!
 
-Written by Limor Fried/Ladyada  for Adafruit Industries.  
+Written by Limor Fried/Ladyada  for Adafruit Industries.
 BSD license, check license.txt for more information
 All text above, and the splash screen below must be included in any redistribution
 *********************************************************************/
@@ -128,15 +128,15 @@ void Adafruit_SSD1325::drawPixel(int16_t x, int16_t y, uint16_t color) {
     adagfx_swap(x, y);
     y = HEIGHT - y - 1;
     break;
-  }  
-  
+  }
+
   //Serial.print("("); Serial.print(x); Serial.print(","); Serial.print(y); Serial.println(")");
 
   // x is which column
-  if (color == WHITE) 
-    buffer[x+ (y/8)*SSD1325_LCDWIDTH] |= _BV((y%8));  
+  if (color == WHITE)
+    buffer[x+ (y/8)*SSD1325_LCDWIDTH] |= _BV((y%8));
   else
-    buffer[x+ (y/8)*SSD1325_LCDWIDTH] &= ~_BV((y%8)); 
+    buffer[x+ (y/8)*SSD1325_LCDWIDTH] &= ~_BV((y%8));
 }
 
 void Adafruit_SSD1325::begin(void) {
@@ -199,7 +199,7 @@ void Adafruit_SSD1325::begin(void) {
 
   command(SSD1325_SETCONTRAST); /* set contrast current */
   command(0x7F);  // max!
-  
+
   command(SSD1325_SETROWPERIOD);
   command(0x51);
   command(SSD1325_SETPHASELEN);
@@ -210,11 +210,11 @@ void Adafruit_SSD1325::begin(void) {
   command(0x28);
   command(SSD1325_SETVCOMLEVEL); // Set High Voltage Level of COM Pin
   command(0x1C); //?
-  command(SSD1325_SETVSL); // set Low Voltage Level of SEG Pin 
+  command(SSD1325_SETVSL); // set Low Voltage Level of SEG Pin
   command(0x0D|0x02);
-  
+
   command(SSD1325_NORMALDISPLAY); /* set display mode */
-  /* Clear Screen */  
+  /* Clear Screen */
  // command(0x23); /*set graphic acceleration commmand */
  // command(SSD1325_GFXACCEL);
  // command(SSD1325_DRAWRECT); /* draw rectangle */
@@ -235,7 +235,7 @@ void Adafruit_SSD1325::invertDisplay(uint8_t i) {
   }
 }
 
-void Adafruit_SSD1325::command(uint8_t c) { 
+void Adafruit_SSD1325::command(uint8_t c) {
   digitalWrite(cs, HIGH);
   digitalWrite(dc, LOW);
   delay(1);
@@ -282,7 +282,7 @@ void Adafruit_SSD1325::data(uint8_t c) {
 }
 
 void Adafruit_SSD1325::display(void) {
-  
+
   command(0x15); /* set column address */
   command(0x00); /* set column start address */
   command(0x3f); /* set column end address */
@@ -298,7 +298,7 @@ void Adafruit_SSD1325::display(void) {
     SPI.setClockDivider(ADAFRUIT_SSD1325_SPI);
 #endif
   }
- 
+
   digitalWrite(cs, HIGH);
   digitalWrite(dc, HIGH);
   digitalWrite(cs, LOW);

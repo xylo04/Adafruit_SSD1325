@@ -4,14 +4,14 @@ This is a library for our Monochrome OLEDs based on SSD1325 drivers
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/category/63_98
 
-These displays use SPI to communicate, 4 or 5 pins are required to  
+These displays use SPI to communicate, 4 or 5 pins are required to
 interface
 
-Adafruit invests time and resources providing this open source code, 
-please support Adafruit and open-source hardware by purchasing 
+Adafruit invests time and resources providing this open source code,
+please support Adafruit and open-source hardware by purchasing
 products from Adafruit!
 
-Written by Limor Fried/Ladyada  for Adafruit Industries.  
+Written by Limor Fried/Ladyada  for Adafruit Industries.
 BSD license, check license.txt for more information
 All text above, and the splash screen below must be included in any redistribution
 *********************************************************************/
@@ -41,8 +41,8 @@ Adafruit_SSD1325 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 #define YPOS 1
 #define DELTAY 2
 
-#define LOGO16_GLCD_HEIGHT 16 
-#define LOGO16_GLCD_WIDTH  16 
+#define LOGO16_GLCD_HEIGHT 16
+#define LOGO16_GLCD_WIDTH  16
 static const unsigned char PROGMEM logo16_glcd_bmp[] =
 { B00000000, B11000000,
   B00000001, B11000000,
@@ -60,7 +60,7 @@ static const unsigned char PROGMEM logo16_glcd_bmp[] =
   B01111100, B11110000,
   B01110000, B01110000,
   B00000000, B00110000 };
-  
+
 // The Arduino UNO doesnt have enough RAM for gradients
 // but the *display* supports it!
 void graydient()
@@ -94,10 +94,10 @@ void graydient()
   }
 }
 
-void setup()   {                
+void setup()   {
   Serial.begin(9600);
   Serial.println("SSD1325 OLED test");
- 
+
   // by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
   display.begin();
   // init done
@@ -108,7 +108,7 @@ void setup()   {
 
   graydient();
   delay(1000);
-  display.clearDisplay();   // clears the screen and buffer  
+  display.clearDisplay();   // clears the screen and buffer
 
 /*
   for (uint8_t c=0; c<127; c++) {
@@ -166,7 +166,7 @@ void setup()   {
   testdrawtriangle();
   delay(2000);
   display.clearDisplay();
-   
+
   testfilltriangle();
   delay(2000);
   display.clearDisplay();
@@ -203,9 +203,9 @@ display.setRotation(0);
 
   // invert the display
   display.invertDisplay(true);
-  delay(1000); 
+  delay(1000);
   display.invertDisplay(false);
-  delay(1000); 
+  delay(1000);
 
   // draw a bitmap icon and 'animate' movement
   testdrawbitmap(logo16_glcd_bmp, LOGO16_GLCD_HEIGHT, LOGO16_GLCD_WIDTH);
@@ -228,7 +228,7 @@ void testdrawbitmap(const uint8_t *bitmap, uint8_t w, uint8_t h) {
     icons[f][XPOS] = random(display.width());
     icons[f][YPOS] = 0;
     icons[f][DELTAY] = random(5) + 1;
-    
+
     Serial.print("x: ");
     Serial.print(icons[f][XPOS], DEC);
     Serial.print(" y: ");
@@ -244,7 +244,7 @@ void testdrawbitmap(const uint8_t *bitmap, uint8_t w, uint8_t h) {
     }
     display.display();
     delay(200);
-    
+
     // then erase it + move it
     for (uint8_t f=0; f< NUMFLAKES; f++) {
       display.drawBitmap(icons[f][XPOS], icons[f][YPOS],  logo16_glcd_bmp, w, h, BLACK);
@@ -272,7 +272,7 @@ void testdrawchar(void) {
     display.write(i);
     if ((i > 0) && (i % 21 == 0))
       display.println();
-  }    
+  }
   display.display();
 }
 
@@ -331,7 +331,7 @@ void testfillroundrect(void) {
     display.display();
   }
 }
-   
+
 void testdrawrect(void) {
   for (int16_t i=0; i<display.height()/2; i+=2) {
     display.drawRect(i, i, display.width()-2*i, display.height()-2*i, WHITE);
@@ -339,7 +339,7 @@ void testdrawrect(void) {
   }
 }
 
-void testdrawline() {  
+void testdrawline() {
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(0, 0, i, display.height()-1, WHITE);
     display.display();
@@ -349,7 +349,7 @@ void testdrawline() {
     display.display();
   }
   delay(250);
-  
+
   display.clearDisplay();
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(0, display.height()-1, i, 0, WHITE);
@@ -360,7 +360,7 @@ void testdrawline() {
     display.display();
   }
   delay(250);
-  
+
   display.clearDisplay();
   for (int16_t i=display.width()-1; i>=0; i-=4) {
     display.drawLine(display.width()-1, display.height()-1, i, 0, WHITE);
@@ -378,7 +378,7 @@ void testdrawline() {
     display.display();
   }
   for (int16_t i=0; i<display.width(); i+=4) {
-    display.drawLine(display.width()-1, 0, i, display.height()-1, WHITE); 
+    display.drawLine(display.width()-1, 0, i, display.height()-1, WHITE);
     display.display();
   }
   delay(250);
